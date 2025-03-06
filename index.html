@@ -24,14 +24,19 @@
             transition: opacity 1s ease-in-out;
         }
         .weather-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px; /* Increased from 20px for more space */
+    border-radius: 10px;
+    min-width: 300px; /* Added to ensure it’s wide enough */
+}
+.weather-info {
+    font-size: 2em; /* Increased from 1.5em for larger text */
+}
         }
         h1 {
             font-size: 2.5em;
@@ -104,18 +109,18 @@
 
         // Update weather display
         async function updateWeather() {
-            const city = cities[currentCityIndex];
-            cityElement.textContent = city.name;
-            const weather = await fetchWeather(city.lat, city.lon);
-            if (weather) {
-                weatherElement.innerHTML = `
-                    Temperature: ${weather.temp}°F<br>
-                    Conditions: ${weather.description}<br>
-                    Humidity: ${weather.humidity}%
-                `;
-            }
-            currentCityIndex = (currentCityIndex + 1) % cities.length;
-        }
+    const city = cities[currentCityIndex];
+    cityElement.textContent = city.name;
+    const weather = await fetchWeather(city.lat, city.lon);
+    if (weather) {
+        weatherElement.innerHTML = `
+            Temperature: ${Math.round(weather.temp)}°F<br>
+            Conditions: ${weather.description}<br>
+            Humidity: ${weather.humidity}%
+        `;
+    }
+    currentCityIndex = (currentCityIndex + 1) % cities.length;
+}
 
         // Update background image
         function updateBackground() {
