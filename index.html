@@ -24,26 +24,22 @@
             transition: opacity 1s ease-in-out;
         }
         .weather-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 40px; /* Increased from 20px for more space */
-    border-radius: 10px;
-    min-width: 300px; /* Added to ensure it’s wide enough */
-}
-.weather-info {
-    font-size: 2em; /* Increased from 1.5em for larger text */
-}
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 10px;
+            min-width: 300px;
         }
         h1 {
             font-size: 2.5em;
             margin: 0;
         }
         .weather-info {
-            font-size: 1.5em;
+            font-size: 2em;
         }
         .hidden {
             opacity: 0;
@@ -58,8 +54,8 @@
     </div>
 
     <script>
-        // Weather API configuration (using OpenWeatherMap as an example)
-        const API_KEY = 'bd9b7248ba493be9e10e4bb5e4d2fe84'; // Get this from openweathermap.org
+        // Weather API configuration
+        const API_KEY = 'bd9b7248ba493be9e10e4bb5e4d2fe84';
         const cities = [
             { name: 'Roswell, NM', lat: 33.3943, lon: -104.5230 },
             { name: 'Cloudcroft, NM', lat: 32.9573, lon: -105.7425 },
@@ -68,19 +64,18 @@
             { name: 'Statesboro, GA', lat: 32.4488, lon: -81.7832 }
         ];
 
-        // Background images array (add your image paths here)
+        // Background images array
         const backgroundImages = [
             'Pictures/Photo1.jpg',
             'Pictures/Photo2.jpg',
-	    'Pictures/Photo3.jpg',
-	    'Pictures/Photo4.jpg',
-	    'Pictures/Photo5.jpg',
-	    'Pictures/Photo6.jpg',
-	    'Pictures/Photo7.jpg',
-	    'Pictures/Photo8.jpg',
-	    'Pictures/Photo9.jpg',
-	    'Pictures/Photo10.jpg',
-            // Add more image paths (up to 10)
+            'Pictures/Photo3.jpg',
+            'Pictures/Photo4.jpg',
+            'Pictures/Photo5.jpg',
+            'Pictures/Photo6.jpg',
+            'Pictures/Photo7.jpg',
+            'Pictures/Photo8.jpg',
+            'Pictures/Photo9.jpg',
+            'Pictures/Photo10.jpg'
         ];
 
         let currentCityIndex = 0;
@@ -109,18 +104,18 @@
 
         // Update weather display
         async function updateWeather() {
-    const city = cities[currentCityIndex];
-    cityElement.textContent = city.name;
-    const weather = await fetchWeather(city.lat, city.lon);
-    if (weather) {
-        weatherElement.innerHTML = `
-            Temperature: ${Math.round(weather.temp)}°F<br>
-            Conditions: ${weather.description}<br>
-            Humidity: ${weather.humidity}%
-        `;
-    }
-    currentCityIndex = (currentCityIndex + 1) % cities.length;
-}
+            const city = cities[currentCityIndex];
+            cityElement.textContent = city.name;
+            const weather = await fetchWeather(city.lat, city.lon);
+            if (weather) {
+                weatherElement.innerHTML = `
+                    Temperature: ${Math.round(weather.temp)}°F<br>
+                    Conditions: ${weather.description}<br>
+                    Humidity: ${weather.humidity}%
+                `;
+            }
+            currentCityIndex = (currentCityIndex + 1) % cities.length;
+        }
 
         // Update background image
         function updateBackground() {
